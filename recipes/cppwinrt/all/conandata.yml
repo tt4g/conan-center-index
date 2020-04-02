@@ -1,0 +1,4 @@
+sources:
+  2.0.191018.6:
+    url: "https://github.com/microsoft/cppwinrt/releases/download/2.0.191018.6/Microsoft.Windows.CppWinRT.2.0.191018.6.nupkg"
+    sha256: "04ed0d556aefc9b2ddb502273a9614274a979a2632287a20fed25a3832a8a426"
