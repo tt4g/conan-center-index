@@ -87,6 +87,8 @@ class FruitConan(ConanFile):
             self._cmake = CMake(self)
             self._cmake.definitions["FRUIT_USES_BOOST"] = self.options.use_boost
             self._cmake.definitions["FRUIT_ENABLE_COVERAGE"] = False
+            self._cmake.definitions["RUN_TESTS_UNDER_VALGRIND"] = False
+            self._cmake.definitions["FRUIT_ENABLE_CLANG_TIDY"] = False
 
             self._cmake.configure(build_folder=self._build_subfolder)
         return self._cmake
