@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index d5b6a64..a9b0baa 100644
+index 11342ce..c85be1b 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -20,15 +20,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+@@ -14,15 +14,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
  # CMake on OSX likes to see this set explicitly, otherwise it outputs a warning.
  set(CMAKE_MACOSX_RPATH 1)
  
@@ -18,7 +18,7 @@ index d5b6a64..a9b0baa 100644
  set(FRUIT_ADDITIONAL_CXX_FLAGS "" CACHE STRING "Additional CXX compiler flags." FORCE)
  
  set(FRUIT_ADDITIONAL_COMPILE_FLAGS "${FRUIT_ADDITIONAL_CXX_FLAGS}")
-@@ -42,18 +35,18 @@ if(NOT "${CMAKE_CXX_COMPILER_ID}" MATCHES "^(GNU|Clang|AppleClang|MSVC)$")
+@@ -36,18 +29,18 @@ if(NOT "${CMAKE_CXX_COMPILER_ID}" MATCHES "^(GNU|Clang|AppleClang|MSVC)$")
    #   - https://software.intel.com/en-us/forums/intel-c-compiler/topic/606049
  endif()
  
@@ -49,7 +49,7 @@ index d5b6a64..a9b0baa 100644
  
  option(FRUIT_ENABLE_COVERAGE "Enable collection of test coverage. This is meant to be used by Fruit developers. It's only supported when using GCC on Linux." OFF)
  if("${FRUIT_ENABLE_COVERAGE}")
-@@ -95,12 +88,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${FRUIT_ADDITIONAL_LINKER_
+@@ -89,12 +82,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${FRUIT_ADDITIONAL_LINKER_
  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${FRUIT_ADDITIONAL_LINKER_FLAGS}")
  set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${FRUIT_ADDITIONAL_LINKER_FLAGS}")
  
