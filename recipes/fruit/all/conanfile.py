@@ -63,19 +63,22 @@ class FruitConan(ConanFile):
         return self.name + "-" + self.version
 
     def _get_source(self):
-        filename = os.path.basename(self.conan_data["sources"][self.version]["url"])
-        tools.download(filename=filename, **self.conan_data["sources"][self.version])
+        if Version(self.version) == "3.4.0":
+            filename = os.path.basename(self.conan_data["sources"][self.version]["url"])
+            tools.download(filename=filename, **self.conan_data["sources"][self.version])
 
-        with tarfile.TarFile.open(filename, 'r:*') as tarredgzippedFile:
-            # NOTE: The archive file contains the file names build and BULD
-            # in the extras/bazel_root/third_party/fruit directory.
-            # Extraction fails on a case-insensitive file system due to file
-            # name conflicts.
-            # Exclude build as a workaround.
-            exclude_pattern = "%s/extras/bazel_root/third_party/fruit/build" % (self._extracted_dir,)
-            members = list(filter(lambda m: not fnmatch(m.name, exclude_pattern),
-                                  tarredgzippedFile.getmembers()))
-            tarredgzippedFile.extractall(".", members=members)
+            with tarfile.TarFile.open(filename, 'r:*') as tarredgzippedFile:
+                # NOTE: In fruit v3.4.0, The archive file contains the file names
+                # build and BUILD in the extras/bazel_root/third_party/fruit directory.
+                # Extraction fails on a case-insensitive file system due to file
+                # name conflicts.
+                # Exclude build as a workaround.
+                exclude_pattern = "%s/extras/bazel_root/third_party/fruit/build" % (self._extracted_dir,)
+                members = list(filter(lambda m: not fnmatch(m.name, exclude_pattern),
+                                    tarredgzippedFile.getmembers()))
+                tarredgzippedFile.extractall(".", members=members)
+        else:
+            tools.get(**self.conan_data["sources"][self.version])
 
     def source(self):
         self._get_source()
